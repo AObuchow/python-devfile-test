@@ -4,9 +4,10 @@ metadata:
 attributes:
   pod-overrides: {"spec": {"volumes": [{"name": "secret-volume", "secret": {"secretName": "dotfile-secret", "defaultMode": 420}}]}}
 projects:
-  - name: django-realworld-example-app
-    zip:
-      location: http://devfile-registry.dogfooding.svc:8080/resources/v2/django-realworld-example-app.zip
+  - name: springbootproject
+    git:
+      remotes:
+        origin: https://github.com/odo-devfiles/springboot-ex.git
 components:
   - name: tools
     attributes:
