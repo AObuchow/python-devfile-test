@@ -1,14 +1,29 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.0
 metadata:
   name: python-django-local-downstream-udi
+  attributes:
+    pod-overrides:
+      spec:
+        volumes:
+          - csi:
+              driver: csi.sharedresource.openshift.io
+              readOnly: true
+              volumeAttributes:
+                sharedSecret: my-share
+            name: my-csi-volume
 projects:
   - name: django-realworld-example-app
     zip:
       location: http://devfile-registry.dogfooding.svc:8080/resources/v2/django-realworld-example-app.zip
 components:
   - name: tools
+    attributes:
+    container-overrides:
+      volumeMounts:
+        - mountPath: /etc/my-csi-volume
+           name: my-csi-volume
     container:
-      image: quay.io/aobuchow/local-downstream-udi:test-1
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
       endpoints:
         - exposure: public
           name: django
