@@ -1,16 +1,16 @@
 schemaVersion: 2.2.0
 metadata:
   name: python-django-local-downstream-udi
-  attributes:
-    pod-overrides:
-      spec:
-        volumes:
-          - csi:
-              driver: csi.sharedresource.openshift.io
-              readOnly: true
-              volumeAttributes:
-                sharedSecret: my-share
-            name: my-csi-volume
+attributes:
+  pod-overrides:
+    spec:
+      volumes:
+        - csi:
+            driver: csi.sharedresource.openshift.io
+            readOnly: true
+            volumeAttributes:
+              sharedSecret: my-share
+          name: my-csi-volume
 projects:
   - name: django-realworld-example-app
     zip:
